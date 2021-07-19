@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BlogEditor</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/@fortawesome/fontawesome/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/simplemde/dist/simplemde.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+      <span class="navbar-brand">BlogEditor</span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+    <div class="row" id="main">
+      <div class="col-6 border-right" id="editor">
+        <div class="container-fluid" id="form">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputAuthor">Author</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="inputAuthor"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputDate">Publication Date</label>
+              <input
+                type="date"
+                class="form-control form-control-sm"
+                id="inputDate"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTitle">Title</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="inputTitle"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputTitle2">Second Title (Short Description)</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="inputTitle2"
+            />
+          </div>
+          <div class="form-group">
+            <label for="customFile">Title Image</label>
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input custom-file-input-sm"
+                id="customFile"
+              />
+              <label class="custom-file-label" for="customFile"
+                >Choose file</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid" id="editor-container">
+          <textarea name="mde" id="mde"></textarea>
+        </div>
+        <button class="btn btn-sm btn-outline-primary" id="compile-button">
+          Compile
+        </button>
+      </div>
+      <div class="col-6" id="preview-container">
+        <div class="container-fluid" id="preview">
+          <article class="page">
+            <div class="big-image">
+              <div class="inner">
+                <div class="fader">
+                  <div class="text">
+                    <a class="goto-next">Read Next</a>
+                    <h1 class="title"></h1>
+                    <h2 class="description"></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="byline">
+                Published <time></time> by <span class="author"></span>
+              </h3>
+              <h1 class="title"></h1>
+              <h2 class="description"></h2>
+              <div class="text"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+    <script>
+      window.jQuery = window.$ = require("jquery");
+      $("article.page")
+        .find(".big-image")
+        .css({
+          backgroundImage: "url(assets/placeholder.png)"
+        });
+    </script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="./node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
+    <script src="./node_modules/simplemde/dist/simplemde.min.js"></script>
+    <script src="./assets/mde.js"></script>
+  </body>
+</html>
